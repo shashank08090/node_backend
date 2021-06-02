@@ -4,6 +4,7 @@ const Student = require('../model/student')
 const mongoose = require('mongoose');
 
 router.get('/',(req,res,next)=>{
+    
     Student.find().then(result=>{
         res.status(200).json({
             studentData:result
@@ -38,8 +39,22 @@ router.post('/',(req,res,next)=>{
 
 })
 
+router.delete('/:id',(req,res,next)=>{
+Student.remove({_id:req.params.id}).then(result=>{
+    res.status(200).json({
+        "message":"data deleted"
+    })
+}).catch(err=>res.status(500).json({
+    "message":"could not delete data",
+    "errror":err
+}))
+})
 
 
+router.put('/:id',(req,res,next)=>{
+    console.log(req.params.id)
+    
+})
 
 
 

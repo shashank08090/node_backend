@@ -5,10 +5,16 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
+
 const StudentRoute= require('./api/routes/student')
 const FacultyRoute= require('./api/routes/faculty')
+const UserRoute = require('./api/routes/user')
+
 app.use('/student',StudentRoute)
 app.use('/faculty',FacultyRoute)
+app.use('/user',UserRoute)
+
+
 
 
 mongoose.connect('mongodb://localhost:27017/myapp', {useNewUrlParser: true,useUnifiedTopology:true});
